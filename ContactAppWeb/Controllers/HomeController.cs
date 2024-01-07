@@ -45,6 +45,32 @@ namespace ContactAppWeb.Controllers
             return View(contact);
            
 		}
+		public IActionResult Edit(int? id)
+		{
+			if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            var contact = _context.Contacts.Find(id);
+            if (contact == null)
+            {
+                return NotFound();
+            }
+            return View(contact);
+		}
+		[HttpPost]
+		public IActionResult Edit(Contact contact)
+		{
+			if (ModelState.IsValid)
+			{
+				_context.Contacts.Update(contact);
+				_context.SaveChanges();
+				return RedirectToAction("Index");
+
+			}
+			return View(contact);
+
+		}
 
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

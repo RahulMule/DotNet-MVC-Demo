@@ -14,6 +14,7 @@
             <th width="15px" style="border-style:solid">Name</th>
            <th>Email</th>
            <th>Phone</th>
+           <th></th>
        </tr >
         @foreach( var obj in Model)
         {
@@ -21,6 +22,11 @@
                <td width="50%">@obj.Name</td>
                 <td width="50%">@obj.Email</td>
                 <td width="50%">@obj.Phone</td>
+                <td>
+                    <a asp-controller="Home" asp-action="Edit" asp-route-id="@obj.ID" class="btn btn-secondary" style="width:150px">
+                        Edit
+                    </a>
+                </td>
            </tr>
 
         }
