@@ -71,8 +71,34 @@ namespace ContactAppWeb.Controllers
 			return View(contact);
 
 		}
+        public IActionResult Delete(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            var contact = _context.Contacts.Find(id);
+            if (contact == null)
+            {
+                return NotFound();
+            }
+            return View(contact);
+        }
+        [HttpPost]
+        public IActionResult Delete(Contact contact)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Contacts.Remove(contact);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
 
-		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+            }
+            return View(contact);
+
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

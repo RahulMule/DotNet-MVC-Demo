@@ -23,8 +23,11 @@
                 <td width="50%">@obj.Email</td>
                 <td width="50%">@obj.Phone</td>
                 <td>
-                    <a asp-controller="Home" asp-action="Edit" asp-route-id="@obj.ID" class="btn btn-secondary" style="width:150px">
+                    <a asp-controller="Home" asp-action="Edit" asp-route-id="@obj.ID" class="btn btn-primary" style="width:100px">
                         Edit
+                    </a>
+                    <a asp-controller="Home" asp-action="Delete" asp-route-id="@obj.ID" class="btn btn-danger" style="width:100px">
+                        Delete
                     </a>
                 </td>
            </tr>
